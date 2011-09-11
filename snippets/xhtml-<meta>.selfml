@@ -1,0 +1,8 @@
+(name Meta)
+
+(trigger
+    (tab meta))
+
+(only-in text.html)
+
+(snippet [<meta name="%{1="name"}" content="%{2="content"}"%{TM_XHTML}>])

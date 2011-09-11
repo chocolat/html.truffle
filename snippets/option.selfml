@@ -1,0 +1,8 @@
+(name Option)
+
+(trigger
+    (tab opt))
+
+(only-in text.html)
+
+(snippet [<option%{1=" value="%{2="option"}""}>%{3="%{2}"}</option>])

@@ -1,0 +1,8 @@
+(name ⇥)
+
+(trigger
+    (tab tab))
+
+(only-in text.html)
+
+(snippet [&#x21E5;])

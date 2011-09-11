@@ -1,0 +1,8 @@
+(name [Script With External Source])
+
+(trigger
+    (tab scriptsrc))
+
+(only-in text.html)
+
+(snippet [<script src="%{1}" type="text/javascript" charset="%{3="utf-8"}"></script>])

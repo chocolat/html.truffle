@@ -1,0 +1,22 @@
+(menu command.documentation-for-tag
+    command.w3c-validation
+    ---
+    command.refresh-all-active-browsers
+    ---
+    (submenu Entities command.convert-to-html-entities command.convert-to-named-entities-excl-tags command.decode-html-entities --- snippet.xhtml-&nbsp;-nonbreakingspace [snippet.right-(right)] [snippet.left-(left)] [snippet.backtab-(backtab)] [snippet.enter-(enter)] [snippet.control-(control)] [snippet.delete-(delete)] [snippet.return-(return)] [snippet.tab-(tab)] [snippet.backspace-(backspace)] [snippet.command-(command)] [snippet.down-(down)] [snippet.arrow-(arrow)] [snippet.up-(up)] [snippet.shift-(shift)] [snippet.escape-(escape)] [snippet.option-(option)] ---)
+    (submenu [URL Escapes] command.convert-line-selection-to-url-escapes command.decode-numeric-url-escapes-in-line-selection)
+    [command.encrypt-line-selection-(rot-13)]
+    ---
+    command.insert-tag-pair
+    command.insert-close-tag
+    (submenu [Insert DocType] snippet.doctype-html-5 --- snippet.doctype-html-4.0-strict [snippet.html-—-4.0-transitional-(doctype)] --- snippet.doctype-xhtl-1.0-frameset snippet.doctype-xhtml-1.0-strict snippet.doctype-xhtml-1.0-transitional snippet.doctype-xhtml-1.1)
+    (submenu [Insert Tag] snippet.xhtml-<base> snippet.xhtml-<body> snippet.xhtml-<br-> snippet.xhtml-<div> [snippet.embed-qt-movie-(movie)] snippet.fieldset snippet.xhtml-<form> snippet.xhtml-<head> snippet.xhtml-<h1> snippet.xhtml-<input> snippet.input-with-label snippet.xhtml-<link> snippet.xhtml-<a-mailto-> snippet.xhtml-<meta> snippet.option snippet.xhtml-<script> snippet.xhtml-<script-src...> snippet.select-box snippet.xhtml-<style> snippet.xhtml-<table> snippet.xhtml-<textarea> snippet.xhtml-<title>)
+    ---
+    (submenu Includes command.persistent-include command.update-includes)
+    (submenu Format snippet.strong snippet.emphasize)
+    (submenu [Conditional Comments] snippet.ie-conditional-comment-internet-explorer snippet.ie-conditional-comment-internet-explorer-5_0-only snippet.ie-conditional-comment-internet-explorer-5_5-only snippet.ie-conditional-comment-internet-explorer-5_x snippet.ie-conditional-comment-internet-explorer-6-and-below snippet.ie-conditional-comment-internet-explorer-6-only snippet.ie-conditional-comment-internet-explorer-7+ snippet.ie-conditional-comment-not-internet-explorer)
+    snippet.wrap-selection-in-tag
+    command.wrap-each-selected-line-in-open-close-tag
+    snippet.wrap-in-<?=-…-?>
+    ---
+    command.strip-html-tags)

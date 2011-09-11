@@ -1,0 +1,14 @@
+(trigger
+    (key [[ctrl][shift][cmd]W]))
+
+(name [Wrap Each Selected Line in Open/Close Tag])
+
+(only-in text.html)
+
+(input selection line)
+
+(output snippet)
+
+(save nothing)
+
+(script [perl -pe 's/[\$`\\]/\\$&/g; s/([ \t]*)(.+)/$1<\${1:li}>$2<\/\${1\/\\s.*\/\/}>/'])

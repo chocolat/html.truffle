@@ -1,0 +1,10 @@
+(name [Insert Anchor href])
+
+(only-in [text.html meta.tag entity.other.attribute-name -string.quoted])
+
+(output snippet)
+
+(file-extensions html htm rhtml shtml phtml php php3 php4 php5 cfm cfml dbm dbml)
+
+(script [title=`echo $TM_DROPPED_FILE | perl -pe 's/^(.*\/)?(.*?)(\..*)?$/$2/g'`
+echo -n "href=\"$TM_DROPPED_FILE\" title=\"\${1:$title}\" "])

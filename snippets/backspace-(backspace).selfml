@@ -1,0 +1,8 @@
+(name ⌫)
+
+(trigger
+    (tab backspace))
+
+(only-in text.html)
+
+(snippet [&#x232B;])

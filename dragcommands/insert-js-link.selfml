@@ -1,0 +1,9 @@
+(name [Insert JS Link])
+
+(only-in text.html)
+
+(output snippet)
+
+(file-extensions js)
+
+(script [echo "<script src=\"$TM_DROPPED_FILE\" type=\"text/javascript\" charset=\"utf-8\"></script>"])

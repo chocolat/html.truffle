@@ -1,0 +1,8 @@
+(name ↩)
+
+(trigger
+    (tab return))
+
+(only-in text.html)
+
+(snippet [&#x21A9;])

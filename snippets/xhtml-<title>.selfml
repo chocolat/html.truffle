@@ -1,0 +1,8 @@
+(name Title)
+
+(trigger
+    (tab title))
+
+(only-in [text.html - text.blog])
+
+(snippet [<title>%{1="%{TM_FILENAME/((.+)\..*)?/(?2:$2:Page Title)/}"}</title>])

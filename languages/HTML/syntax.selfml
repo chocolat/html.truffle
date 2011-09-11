@@ -1,0 +1,321 @@
+(root text.html.basic
+    (zone meta.tag.any.html
+        (start
+            (regex [(<)([a-zA-Z0-9:]++)(?=[^>]*></\2>)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.html)))
+        (end
+            (regex [(>(<)/)(\2)(>)]
+                (3 entity.name.tag.html)
+                (4 punctuation.definition.tag.html)
+                (1 punctuation.definition.tag.html)
+                (2 meta.scope.between-tag-pair.html)))
+        (subzones
+            (include @tag-stuff)))
+    (zone meta.tag.preprocessor.xml.html
+        (start
+            (regex [(<\?)(xml)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.xml.html)))
+        (end
+            (regex [(\?>)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.xml.html)))
+        (subzones
+            (include @tag-generic-attribute)
+            (include @string-double-quoted)
+            (include @string-single-quoted)))
+    (zone comment.block.html
+        (start
+            (regex <!--
+                (0 punctuation.definition.comment.html)))
+        (end
+            (regex --\s*>
+                (0 punctuation.definition.comment.html)))
+        (subzones
+            (zone invalid.illegal.bad-comments-or-CDATA.html
+                (match --))
+            (include @embedded-code)))
+    (zone meta.tag.sgml.html
+        (start
+            (regex <!
+                (0 punctuation.definition.tag.html)))
+        (end
+            (regex >
+                (0 punctuation.definition.tag.html)))
+        (subzones
+            (zone meta.tag.sgml.doctype.html
+                (start
+                    (regex [(DOCTYPE)]
+                        (1 entity.name.tag.doctype.html)))
+                (end
+                    (regex [(?=>)]
+                        (1 entity.name.tag.doctype.html)))
+                (subzones
+                    (zone string.quoted.double.doctype.identifiers-and-DTDs.html
+                        (match
+                            (regex ["[^">]*"])))))
+            (zone constant.other.inline-data.html
+                (start
+                    (regex `\[CDATA\[`))
+                (end
+                    (regex `]](?=>)`)))
+            (zone invalid.illegal.bad-comments-or-CDATA.html
+                (match
+                    (regex [(\s*)(?!--|>)\S(\s*)])))))
+    (include @embedded-code)
+    (zone source.css.embedded.html
+        (start
+            (regex [(?:^\s+)?(<)((?i:style))\b(?![^>]*/>)]
+                (3 punctuation.definition.tag.html)
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.style.html)))
+        (end
+            (regex [(</)((?i:style))(>)(?:\s*\n)?]
+                (3 punctuation.definition.tag.html)
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.style.html)))
+        (subzones
+            (include @tag-stuff)
+            (zone
+                (start
+                    (regex [(>)]
+                        (1 punctuation.definition.tag.html)))
+                (end
+                    (regex [(?=</(?i:style))]))
+                (subzones
+                    (include @embedded-code)
+                    (include source.css)))))
+    (zone source.js.embedded.html
+        (start
+            (regex [(?:^\s+)?(<)((?i:script))\b(?![^>]*/>)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.script.html)))
+        (end
+            (regex [(?<=</(script|SCRIPT))(>)(?:\s*\n)?]
+                (2 punctuation.definition.tag.html)))
+        (subzones
+            (include @tag-stuff)
+            (zone
+                (start
+                    (regex [(?<!</(?:script|SCRIPT))(>)]
+                        (1 punctuation.definition.tag.html)
+                        (2 entity.name.tag.script.html)))
+                (end
+                    (regex [(</)((?i:script))]
+                        (1 punctuation.definition.tag.html)
+                        (2 entity.name.tag.script.html)))
+                (subzones
+                    (zone comment.line.double-slash.js
+                        (match
+                            (regex [(//).*?((?=</script)|$\n?)]
+                                (1 punctuation.definition.comment.js))))
+                    (zone comment.block.js
+                        (start
+                            (regex /\*
+                                (0 punctuation.definition.comment.js)))
+                        (end
+                            (regex [\*/|(?=</script)]
+                                (0 punctuation.definition.comment.js))))
+                    (include @php)
+                    (include source.js)))))
+    (zone meta.tag.structure.any.html
+        (start
+            (regex [(</?)((?i:body|head|html)\b)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.structure.any.html)))
+        (end
+            (regex [(>)]
+                (1 punctuation.definition.tag.html)
+                (2 entity.name.tag.structure.any.html)))
+        (subzones
+            (include @tag-stuff)))
+    (zone meta.tag.block.any.html
+        (start
+            (regex [(</?)((?i:address|blockquote|dd|div|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|menu|pre)\b)]
+                (1 punctuation.definition.tag.begin.html)
+                (2 entity.name.tag.block.any.html)))
+        (end
+            (regex [(>)]
+                (1 punctuation.definition.tag.end.html)))
+        (subzones
+            (include @tag-stuff)))
+    (zone meta.tag.inline.any.html
+        (start
+            (regex [(</?)((?i:a|abbr|acronym|area|b|base|basefont|bdo|big|br|button|caption|cite|code|col|colgroup|del|dfn|em|font|head|html|i|img|input|ins|isindex|kbd|label|legend|li|link|map|meta|noscript|optgroup|option|param|q|s|samp|script|select|small|span|strike|strong|style|sub|sup|table|tbody|td|textarea|tfoot|th|thead|title|tr|tt|u|var)\b)]
+                (1 punctuation.definition.tag.begin.html)
+                (2 entity.name.tag.inline.any.html)))
+        (end
+            (regex [((?: ?/)?>)]
+                (1 punctuation.definition.tag.end.html)))
+        (subzones
+            (include @tag-stuff)))
+    (zone meta.tag.other.html
+        (start
+            (regex [(</?)([a-zA-Z0-9:]+)]
+                (1 punctuation.definition.tag.begin.html)
+                (2 entity.name.tag.other.html)))
+        (end
+            (regex [(>)]
+                (1 punctuation.definition.tag.end.html)))
+        (subzones
+            (include @tag-stuff)))
+    (include @entities)
+    (zone invalid.illegal.incomplete.html
+        (match <>))
+    (zone invalid.illegal.bad-angle-bracket.html
+        (match <)))
+
+(collection embedded-code
+    (include @ruby)
+    (include @php)
+    (include @smarty)
+    (include @python))
+
+(collection python
+    (zone source.python.embedded.html
+        (start
+            (regex [(?:^\s*)<\?python(?!.*\?>)]))
+        (end
+            (regex [\?>(?:\s*$\n)?]))
+        (subzones
+            (include source.python))))
+
+(collection smarty
+    (zone
+        (start
+            (regex [(\{(literal)\})]
+                (1 source.smarty.embedded.html)
+                (2 support.function.built-in.smarty)))
+        (end
+            (regex [(\{/(literal)\})]
+                (1 source.smarty.embedded.html)
+                (2 support.function.built-in.smarty))))
+    (zone source.smarty.embedded.html
+        (start
+            (regex [{{|{]))
+        (end
+            (regex [}}|}]))
+        (subzones
+            (include source.smarty))))
+
+(collection string-single-quoted
+    (zone string.quoted.single.html
+        (start
+            (regex '
+                (0 punctuation.definition.string.begin.html)))
+        (end
+            (regex '
+                (0 punctuation.definition.string.end.html)))
+        (subzones
+            (include @embedded-code)
+            (include @entities))))
+
+(collection php
+    (zone
+        (start
+            (regex [(?=(^\s*)?<\?)]))
+        (end
+            (regex [(?!(^\s*)?<\?)]))
+        (subzones
+            (include source.php))))
+
+(collection ruby
+    (zone comment.block.erb
+        (start
+            (regex [<%+#]
+                (0 punctuation.definition.comment.erb)))
+        (end
+            (regex %>
+                (0 punctuation.definition.comment.erb))))
+    (zone source.ruby.embedded.html
+        (start
+            (regex [<%+(?!>)=?]
+                (0 punctuation.section.embedded.ruby)))
+        (end
+            (regex -?%>
+                (0 punctuation.section.embedded.ruby)))
+        (subzones
+            (zone comment.line.number-sign.ruby
+                (match
+                    (regex [(#).*?(?=-?%>)]
+                        (1 punctuation.definition.comment.ruby))))
+            (include source.ruby)))
+    (zone source.ruby.nitro.embedded.html
+        (start
+            (regex [<\?r(?!>)=?]
+                (0 punctuation.section.embedded.ruby.nitro)))
+        (end
+            (regex -?\?>
+                (0 punctuation.section.embedded.ruby.nitro)))
+        (subzones
+            (zone comment.line.number-sign.ruby.nitro
+                (match
+                    (regex [(#).*?(?=-?\?>)]
+                        (1 punctuation.definition.comment.ruby.nitro))))
+            (include source.ruby))))
+
+(collection tag-id-attribute
+    (zone meta.attribute-with-value.id.html
+        (start
+            (regex [\b(id)\b\s*(=)]
+                (1 entity.other.attribute-name.id.html)
+                (2 punctuation.separator.key-value.html)))
+        (end
+            (regex [(?<='|")]
+                (1 entity.other.attribute-name.id.html)
+                (2 punctuation.separator.key-value.html)))
+        (subzones
+            (zone string.quoted.double.html
+                (start
+                    (regex "
+                        (0 punctuation.definition.string.begin.html)))
+                (end
+                    (regex "
+                        (0 punctuation.definition.string.end.html)))
+                (subzones
+                    (include @embedded-code)
+                    (include @entities)))
+            (zone string.quoted.single.html
+                (start
+                    (regex '
+                        (0 punctuation.definition.string.begin.html)))
+                (end
+                    (regex '
+                        (0 punctuation.definition.string.end.html)))
+                (subzones
+                    (include @embedded-code)
+                    (include @entities))))))
+
+(collection tag-generic-attribute
+    (zone entity.other.attribute-name.html
+        (match
+            (regex [\b([a-zA-Z\-:]+)]))))
+
+(collection entities
+    (zone constant.character.entity.html
+        (match
+            (regex [(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)]
+                (3 punctuation.definition.entity.html)
+                (1 punctuation.definition.entity.html))))
+    (zone invalid.illegal.bad-ampersand.html
+        (match &)))
+
+(collection string-double-quoted
+    (zone string.quoted.double.html
+        (start
+            (regex "
+                (0 punctuation.definition.string.begin.html)))
+        (end
+            (regex "
+                (0 punctuation.definition.string.end.html)))
+        (subzones
+            (include @embedded-code)
+            (include @entities))))
+
+(collection tag-stuff
+    (include @tag-id-attribute)
+    (include @tag-generic-attribute)
+    (include @string-double-quoted)
+    (include @string-single-quoted)
+    (include @embedded-code))

@@ -1,0 +1,35 @@
+(name [Insert QuickTime Movie])
+
+(only-in text.html)
+
+(output snippet)
+
+(file-extensions mov)
+
+(save nothing)
+
+(script [DIM=$(osascript <<APPLESCRIPT
+	tell app "QuickTime Player"
+		open POSIX file "$TM_DROPPED_FILEPATH"
+		set w to item 1 of (get dimensions of movie 1)
+		set h to item 2 of (get dimensions of movie 1)
+		close movie 1
+		return "width=\"" & w & "\" height=\"" & h & "\""
+	end tell
+APPLESCRIPT
+)
+
+cat <<SNIPPET
+<object $DIM classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
+	<param name="src" value="$TM_DROPPED_FILE"${TM_XHTML}>
+	<param name="controller" value="\$1"${TM_XHTML}>
+	<param name="autoplay" value="\$2"${TM_XHTML}>
+	<embed src="$TM_DROPPED_FILE"
+		$DIM
+		controller="\${1:true}" autoplay="\${2:true}"
+		scale="tofit" cache="true"
+		pluginspage="http://www.apple.com/quicktime/download/"
+	${TM_XHTML}>
+</object>
+SNIPPET
+])

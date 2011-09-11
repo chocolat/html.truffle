@@ -1,0 +1,8 @@
+(name ⇤)
+
+(trigger
+    (tab backtab))
+
+(only-in text.html)
+
+(snippet [&#x21E4;])

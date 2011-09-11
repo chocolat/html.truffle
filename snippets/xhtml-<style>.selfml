@@ -1,0 +1,10 @@
+(name Style)
+
+(trigger
+    (tab style))
+
+(only-in text.html)
+
+(snippet [<style type="text/css" media="screen">
+	%{0}
+</style>])

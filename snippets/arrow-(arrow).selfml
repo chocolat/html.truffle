@@ -1,0 +1,8 @@
+(name →)
+
+(trigger
+    (tab arrow))
+
+(only-in text.html)
+
+(snippet [&#x2192;])

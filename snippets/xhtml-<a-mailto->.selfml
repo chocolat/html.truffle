@@ -1,0 +1,8 @@
+(name [Mail Anchor])
+
+(trigger
+    (tab mailto))
+
+(only-in text.html)
+
+(snippet [<a href="mailto:%{1="joe@example.com"}?subject=%{2="feedback"}">%{3="email me"}</a>])

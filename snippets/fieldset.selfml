@@ -1,0 +1,12 @@
+(name Fieldset)
+
+(trigger
+    (tab fieldset))
+
+(only-in text.html)
+
+(snippet [<fieldset id="%{1/[[:alpha:]]+|( )/(?1:_:\L$0)/g}" %{2="class="%{3}""}>
+	<legend>%{1="%{TM_SELECTED_TEXT}"}</legend>
+	
+	%{0}
+</fieldset>])

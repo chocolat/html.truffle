@@ -1,0 +1,10 @@
+(name Script)
+
+(trigger
+    (tab script))
+
+(only-in text.html)
+
+(snippet [<script type="text/javascript" charset="utf-8">
+	%{0}
+</script>])

@@ -1,0 +1,17 @@
+(trigger
+    (key [[ctrl][cmd]I]))
+
+(name [Add Persistent Include])
+
+(only-in text.html)
+
+(input nothing)
+
+(output after-selected)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+require "#{ENV['TM_BUNDLE_SUPPORT']}/tminclude.rb"
+TextMate::Includes.instance.include_command
+])

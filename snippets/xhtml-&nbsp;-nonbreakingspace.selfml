@@ -1,0 +1,8 @@
+(name [Non-Breaking Space])
+
+(trigger
+    (key [[alt][space]]))
+
+(only-in text.html)
+
+(snippet &nbsp;)

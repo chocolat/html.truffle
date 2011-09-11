@@ -1,0 +1,10 @@
+(name Body)
+
+(trigger
+    (tab body))
+
+(only-in text.html)
+
+(snippet [<body id="%{1="%{TM_FILENAME/(.*)\..*/\L$1/}"}"%{2=" onload="%{3}""}>
+	%{0}
+</body>])

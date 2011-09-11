@@ -1,0 +1,7 @@
+(name [Wrap in <?= … ?>])
+
+(trigger)
+
+(only-in [text.html string])
+
+(snippet [<?= %{TM_SELECTED_TEXT} ?>])

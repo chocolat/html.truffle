@@ -1,0 +1,8 @@
+(name ⇧)
+
+(trigger
+    (tab shift))
+
+(only-in text.html)
+
+(snippet [&#x21E7;])

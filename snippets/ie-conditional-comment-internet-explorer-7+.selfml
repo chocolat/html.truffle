@@ -1,0 +1,8 @@
+(name [IE Conditional Comment: Internet Explorer 7 and above])
+
+(trigger
+    (tab !))
+
+(only-in text.html)
+
+(snippet [<!--[if gte IE 7]>%{1="%{TM_SELECTED_TEXT=" IE Conditional Comment: Internet Explorer 7 and above "}"}<![endif]-->%{0}])

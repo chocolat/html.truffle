@@ -1,0 +1,8 @@
+(name ↑)
+
+(trigger
+    (tab up))
+
+(only-in text.html)
+
+(snippet [&#x2191;])

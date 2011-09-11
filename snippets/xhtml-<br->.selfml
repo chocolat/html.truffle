@@ -1,0 +1,8 @@
+(name Br)
+
+(trigger
+    (key [[ctrl][enter]]))
+
+(only-in text.html)
+
+(snippet [<br%{TM_XHTML}>])

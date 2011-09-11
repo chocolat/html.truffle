@@ -1,0 +1,8 @@
+(name ⌃)
+
+(trigger
+    (tab control))
+
+(only-in text.html)
+
+(snippet [&#x2303;])

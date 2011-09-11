@@ -1,0 +1,8 @@
+(name Emphasize)
+
+(trigger
+    (key [[cmd]I]))
+
+(only-in text.html)
+
+(snippet [%{0="%{TM_SELECTED_TEXT/\A<em>(.*)<\/em>\z|.*/(?1:$1:<em>$0<\/em>)/m}"}])

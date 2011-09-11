@@ -1,0 +1,8 @@
+(name Base)
+
+(trigger
+    (tab base))
+
+(only-in text.html)
+
+(snippet [<base href="%{1}"%{2=" target="%{3}""}%{TM_XHTML}>])

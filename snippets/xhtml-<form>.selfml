@@ -1,0 +1,12 @@
+(name Form)
+
+(trigger
+    (tab form))
+
+(only-in text.html)
+
+(snippet [<form action="%{1="%{TM_FILENAME/(.*?)\..*/$1_submit/}"}" method="%{2="get"}" accept-charset="utf-8">
+	%{0}
+
+	<p><input type="submit" value="Continue &rarr;"%{TM_XHTML}></p>
+</form>])

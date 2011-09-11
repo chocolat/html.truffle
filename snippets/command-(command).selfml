@@ -1,0 +1,8 @@
+(name ⌘)
+
+(trigger
+    (tab command))
+
+(only-in text.html)
+
+(snippet [&#x2318;])

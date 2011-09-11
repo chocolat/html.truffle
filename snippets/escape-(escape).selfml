@@ -1,0 +1,8 @@
+(name ⎋)
+
+(trigger
+    (tab escape))
+
+(only-in text.html)
+
+(snippet [&#x238B;])
