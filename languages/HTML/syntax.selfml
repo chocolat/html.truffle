@@ -46,7 +46,7 @@
         (subzones
             (zone meta.tag.sgml.doctype.html
                 (start
-                    (regex [(DOCTYPE)]
+                    (regex [(DOCTYPE|doctype)]
                         (1 entity.name.tag.doctype.html)))
                 (end
                     (regex [(?=>)]
