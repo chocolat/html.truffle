@@ -15,22 +15,22 @@
 
 (folding
     (start [(?x)
-		(<(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)\b.*?>
+		(<(?i:head|body|table|thead|tbody|tfoot|tr|div|section|article|aside|header|footer|nav|menu|select|fieldset|style|script|ul|ol|li|form|dl)\b.*?>
 		|<!--(?!.*--\s*>)
 		|^<!--\ \#tminclude\ (?>.*?-->)$
 		|<\?(?:php)?.*\b(if|for(each)?|while)\b.+:
 		|\{\{?(if|foreach|capture|literal|foreach|php|section|strip)
 		|\{\s*($|\?>\s*$|//|/\*(.*\*/\s*$|(?!.*?\*/)))
-        |array\s?\(\s*$
+		|array\s?\(\s*$
 		)])
     (stop [(?x)
-		(</(?i:head|body|table|thead|tbody|tfoot|tr|div|select|fieldset|style|script|ul|ol|li|form|dl)>
+		(</(?i:head|body|table|thead|tbody|tfoot|tr|div|section|article|aside|header|footer|nav|menu|select|fieldset|style|script|ul|ol|li|form|dl)>
 		|^(?!.*?<!--).*?--\s*>
 		|^<!--\ end\ tminclude\ -->$
 		|<\?(?:php)?.*\bend(if|for(each)?|while)\b
 		|\{\{?/(if|foreach|capture|literal|foreach|php|section|strip)
 		|^[^{]*\}
-        |^\s*\),
+		|^\s*\)[,;]
 		)]))
 
 (in text.html

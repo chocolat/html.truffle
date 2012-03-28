@@ -1,0 +1,17 @@
+(trigger
+    (key [[ctrl][cmd]U]))
+
+(name [Update Project / Selected Files])
+
+(only-in text.html)
+
+(input nothing)
+
+(output tooltip)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+require "#{ENV['TM_BUNDLE_SUPPORT']}/tminclude.rb"
+TextMate::Includes.instance.process_persistent_includes_for_project
+])

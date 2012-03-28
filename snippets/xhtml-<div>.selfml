@@ -5,6 +5,6 @@
 
 (only-in text.html)
 
-(snippet [<div%{1=" id="%{2="name"}""}>
+(snippet [<div%{1=" id=\"%{2="name"}\""}>
 	%{0="%{TM_SELECTED_TEXT}"}
 </div>])

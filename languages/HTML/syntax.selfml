@@ -132,7 +132,7 @@
             (include @tag-stuff)))
     (zone meta.tag.block.any.html
         (start
-            (regex [(</?)((?i:address|blockquote|dd|div|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|menu|pre)\b)]
+            (regex [(</?)((?i:address|blockquote|dd|div|section|article|aside|header|footer|nav|menu|dl|dt|fieldset|form|frame|frameset|h1|h2|h3|h4|h5|h6|iframe|noframes|object|ol|p|ul|applet|center|dir|hr|pre)\b)]
                 (1 punctuation.definition.tag.begin.html)
                 (2 entity.name.tag.block.any.html)))
         (end
